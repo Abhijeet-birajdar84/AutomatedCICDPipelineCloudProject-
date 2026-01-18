@@ -16,7 +16,7 @@ pipeline {
 
         stage('Backend Test') {
             steps {
-                sh '''
+                bat '''
                 cd backend
                 npm install
                 npm test
@@ -26,7 +26,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh '''
+                bat '''
                 docker build -t backend-app ./backend
                 docker build -t frontend-app ./frontend
                 '''
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh '''
+                bat '''
                 kubectl apply -f k8s/
                 '''
             }
